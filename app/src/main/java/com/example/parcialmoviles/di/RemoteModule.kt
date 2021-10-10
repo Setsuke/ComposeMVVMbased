@@ -1,5 +1,6 @@
 package com.example.parcialmoviles.di
 
+import com.example.parcialmoviles.data.remote.AlbumService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteModule {
-    private const val API_BASE_URL = "https://www.superheroapi.com/api.php/10157703717092094/"
+    private const val API_BASE_URL ="https://theaudiodb.com/api/v1/json/523532/"
 
     @Provides
     @Singleton
@@ -22,9 +23,9 @@ object RemoteModule {
             .build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideHeroService(retrofit: Retrofit): HeroService {
-//        return retrofit.create(HeroService::class.java)
-//    }
+    @Provides
+    @Singleton
+    fun provideAlbumService(retrofit: Retrofit): AlbumService {
+        return retrofit.create(AlbumService::class.java)
+    }
 }

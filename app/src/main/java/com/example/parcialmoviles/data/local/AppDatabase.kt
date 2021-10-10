@@ -2,9 +2,9 @@ package com.example.parcialmoviles.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.parcialmoviles.data.model.General
+import com.example.parcialmoviles.data.model.Album
 
-@Database(entities=[General::class],version = 1,exportSchema = false)
+@Database(entities=[Album::class],version = 1,exportSchema = false)
 abstract  class AppDatabase: RoomDatabase(){
-    //abstract fun generalDao(): GeneralDao
+    abstract fun albumDao(): AlbumDao
 }

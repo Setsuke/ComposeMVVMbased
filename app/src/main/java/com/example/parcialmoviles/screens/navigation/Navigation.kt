@@ -1,45 +1,30 @@
 package com.example.parcialmoviles.screens.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.parcialmoviles.screens.Album.AlbumViewModel
+import com.example.parcialmoviles.screens.Album.Albums
 
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
 
-//    NavHost(
-//        navController = navController,
-//        startDestination = Routes.GeneralList.route
-//    ) {
-//        composable(Routes.HeroList.route) {
-//            val viewModel: HeroesViewModel = hiltViewModel()
-//            Heroes(viewModel) {
-//                navController.navigate("${Routes.HeroDetails.route}/$it")
-//            }
-//        }
-//
-//        composable(
-//            route = Routes.HeroDetails.routeWithArgument,
-//            arguments = listOf(navArgument(Routes.HeroDetails.argument) {
-//                type = NavType.StringType
-//            })
-//        ) { backStackEntry ->
-//            val id = backStackEntry.arguments?.getString(Routes.HeroDetails.argument, "") as String
-//            val detailsViewModel: HeroDetailsViewModel = hiltViewModel()
-//            detailsViewModel.fetchHeroById(id)
-//            HeroDetails(detailsViewModel)
-//        }
-//    }
+    NavHost(navController =  navController, startDestination = Routes.AlbumsList.route) {
+        composable(Routes.AlbumsList.route) {
+            val albumViewModel : AlbumViewModel = hiltViewModel()
+            albumViewModel.fetchAlbums()
+            Albums(albumViewModel = albumViewModel)
+        }
+    }
 }
 
 
 
 
-sealed class Routes(val route: String){
-//    object GeneralList: Routes("GeneralList")
-//    object GeneralDetails:Routes("GeneralDetails") {
-//        const val routeWithArgument = "GeneralDetails/{id}"
-//        const val argument = "id"
-//    }
+sealed class Routes(val route:String) {
+    object AlbumsList : Routes("AlbumsList")
+
 }
